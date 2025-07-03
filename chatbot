@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Billing Support</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: seashell;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: orange;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .section {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .card {
+      background-color: white;
+      border: 1px solid lightgray;
+      margin: 10px auto;
+      padding: 15px;
+      max-width: 500px;
+    }
+
+    footer {
+      background-color: black;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Billing & Payment Support</h1>
+    <p>Get help with payments, invoices, refunds, or account-related questions</p>
+  </header>
+
+  <div class="section">
+    <h2>Ask the Chatbot</h2>
+    <p>Our virtual assistant can help you with:</p>
+  </div>
+
+  <div class="section">
+    <div class="card">
+      <p>💳 Payment issues — failed transactions, double charges, or payment status</p>
+    </div>
+
+    <div class="card">
+      <p>🧾 Invoices & Receipts — how to download, view, or request invoice copies</p>
+    </div>
+
+    <div class="card">
+      <p>🔁 Refunds — refund requests, eligibility, and processing timelines</p>
+    </div>
+
+    <div class="card">
+      <p>👤 Account & Billing Info — update payment methods or view billing history</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Customer Support | All Rights Reserved
+  </footer>
+
+  <!-- ✅ Jotform Chatbot Script -->
+  <script src="https://cdn.jotfor.ms/agent/embedjs/0197cb8d3e6d7656891caa40805cb4d33182/embed.js?skipWelcome=1&maximizable=1"></script>
+
+</body>
+</html>
