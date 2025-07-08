@@ -1,0 +1,95 @@
+#include <iostream>
+using namespace std;
+
+const int MAX = 100;
+
+struct Contact {
+    string name;
+    string phone;
+};
+
+Contact contacts[MAX];
+int total = 0;
+
+void addContact() {
+    if (total >= MAX) {
+        cout << "Contact list is full!\n";
+        return;
+    }
+    cout << "Enter name: ";
+    getline(cin, contacts[total].name);
+    cout << "Enter phone number: ";
+    getline(cin, contacts[total].phone);
+    total++;
+    cout << "Contact added.\n";
+}
+
+void viewContacts() {
+    if (total == 0) {
+        cout << "No contacts to show.\n";
+        return;
+    }
+    cout << "All Contacts:\n";
+    for (int i = 0; i < total; i++) {
+        cout << i + 1 << ". Name: " << contacts[i].name << ", Phone: " << contacts[i].phone << endl;
+    }
+}
+
+void searchContact() {
+    string input;
+    cout << "Enter name or phone to search: ";
+    getline(cin, input);
+    bool found = false;
+    for (int i = 0; i < total; i++) {
+        if (contacts[i].name == input || contacts[i].phone == input) {
+            cout << "Found: Name: " << contacts[i].name << ", Phone: " << contacts[i].phone << endl;
+            found = true;
+        }
+    }
+    if (!found) {
+        cout << "No contact found.\n";
+    }
+}
+
+void deleteContact() {
+    string input;
+    cout << "Enter name or phone to delete: ";
+    getline(cin, input);
+    for (int i = 0; i < total; i++) {
+        if (contacts[i].name == input || contacts[i].phone == input) {
+            for (int j = i; j < total - 1; j++) {
+                contacts[j] = contacts[j + 1];
+            }
+            total--;
+            cout << "Contact deleted.\n";
+            return;
+        }
+    }
+    cout << "Contact not found.\n";
+}
+
+int main() {
+    int choice;
+    do {
+        cout << "\n--- Contact Manager ---\n";
+        cout << "1. Add Contact\n";
+        cout << "2. View Contacts\n";
+        cout << "3. Search Contact\n";
+        cout << "4. Delete Contact\n";
+        cout << "5. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+        cin.ignore();  // clear input buffer
+
+        switch (choice) {
+            case 1: addContact(); break;
+            case 2: viewContacts(); break;
+            case 3: searchContact(); break;
+            case 4: deleteContact(); break;
+            case 5: cout << "Goodbye!\n"; break;
+            default: cout << "Invalid choice. Try again.\n";
+        }
+    } while (choice != 5);
+
+    return 0;
+}
