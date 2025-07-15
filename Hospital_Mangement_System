@@ -1,19 +1,19 @@
 #include <iostream>
 using namespace std;
 
-// User Data
+
 string usernames[10], passwords[10];
 int userCount = 0;
 
-// Appointment Data
+// Appointment 
 string patientNames[10], doctorNames[10], appointmentDates[10];
 int appointCount = 0;
 
-// Patient Data
+// Patient 
 string pName[10], pGender[10], pAddress[10];
 int pAge[10], pRoom[10], pCount = 0;
 
-// Doctor Data
+// Doctor 
 string docName[7] = {
     "Dr. Sharma", "Dr. Mehta", "Dr. Khan", "Dr. Patel", "Dr. Gupta", "Dr. Das", "Dr. Verma"
 };
@@ -21,7 +21,7 @@ string docExpertise[7] = {
     "Cardiology", "Neurology", "Orthopedics", "Dermatology", "Pediatrics", "ENT", "General Medicine"
 };
 
-// Billing Class
+// Billing 
 class Billing {
 public:
     string patientName;
@@ -54,7 +54,7 @@ public:
     }
 };
 
-// User Registration
+//  Registration
 void registerUser() {
     cout << "\nEnter Username: ";
     cin >> usernames[userCount];
@@ -64,7 +64,7 @@ void registerUser() {
     cout << "User registered successfully.\n";
 }
 
-// User Login
+// Login
 bool loginUser() {
     string u, p;
     cout << "\nEnter Username: ";
@@ -82,7 +82,7 @@ bool loginUser() {
     return false;
 }
 
-// Book Appointment
+// Book 
 void bookAppointment() {
     if (appointCount >= 10) {
         cout << "Appointment limit reached.\n";
@@ -150,7 +150,7 @@ void viewPatients() {
     }
 }
 
-// View Doctors
+//  Doctors
 void viewDoctors() {
     cout << "\n--- Doctor List ---\n";
     for (int i = 0; i < 7; i++) {
@@ -158,7 +158,7 @@ void viewDoctors() {
     }
 }
 
-// Main Program
+
 int main() {
     int mainChoice;
     do {
