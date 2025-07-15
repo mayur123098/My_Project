@@ -1,0 +1,217 @@
+#include <iostream>
+using namespace std;
+
+// User Data
+string usernames[10], passwords[10];
+int userCount = 0;
+
+// Appointment Data
+string patientNames[10], doctorNames[10], appointmentDates[10];
+int appointCount = 0;
+
+// Patient Data
+string pName[10], pGender[10], pAddress[10];
+int pAge[10], pRoom[10], pCount = 0;
+
+// Doctor Data
+string docName[7] = {
+    "Dr. Sharma", "Dr. Mehta", "Dr. Khan", "Dr. Patel", "Dr. Gupta", "Dr. Das", "Dr. Verma"
+};
+string docExpertise[7] = {
+    "Cardiology", "Neurology", "Orthopedics", "Dermatology", "Pediatrics", "ENT", "General Medicine"
+};
+
+// Billing Class
+class Billing {
+public:
+    string patientName;
+    float roomCharge, doctorFee, medicineCost;
+
+    void inputBill() {
+        cout << "\nEnter Patient Name: ";
+        cin >> ws;
+        getline(cin, patientName);
+
+        cout << "Enter Room Charges: ";
+        cin >> roomCharge;
+
+        cout << "Enter Doctor Fees: ";
+        cin >> doctorFee;
+
+        cout << "Enter Medicine Cost: ";
+        cin >> medicineCost;
+    }
+
+    void showBill() {
+        float total = roomCharge + doctorFee + medicineCost;
+        cout << "\n----- Final Bill -----\n";
+        cout << "Patient: " << patientName << endl;
+        cout << "Room Charges: " << roomCharge << endl;
+        cout << "Doctor Fees: " << doctorFee << endl;
+        cout << "Medicine Cost: " << medicineCost << endl;
+        cout << "-------------------------" << endl;
+        cout << "Total Amount: " << total << endl;
+    }
+};
+
+// User Registration
+void registerUser() {
+    cout << "\nEnter Username: ";
+    cin >> usernames[userCount];
+    cout << "Enter Password: ";
+    cin >> passwords[userCount];
+    userCount++;
+    cout << "User registered successfully.\n";
+}
+
+// User Login
+bool loginUser() {
+    string u, p;
+    cout << "\nEnter Username: ";
+    cin >> u;
+    cout << "Enter Password: ";
+    cin >> p;
+
+    for (int i = 0; i < userCount; i++) {
+        if (usernames[i] == u && passwords[i] == p) {
+            cout << "Login successful.\n";
+            return true;
+        }
+    }
+    cout << "Invalid username or password.\n";
+    return false;
+}
+
+// Book Appointment
+void bookAppointment() {
+    if (appointCount >= 10) {
+        cout << "Appointment limit reached.\n";
+        return;
+    }
+    cout << "\nEnter Patient Name: ";
+    cin >> ws;
+    getline(cin, patientNames[appointCount]);
+    cout << "Enter Doctor Name: ";
+    getline(cin, doctorNames[appointCount]);
+    cout << "Enter Date (DD/MM): ";
+    cin >> appointmentDates[appointCount];
+    appointCount++;
+    cout << "Appointment booked.\n";
+}
+
+// View Appointments
+void showAppointments() {
+    cout << "\n--- Appointment List ---\n";
+    if (appointCount == 0) {
+        cout << "No appointments found.\n";
+        return;
+    }
+
+    for (int i = 0; i < appointCount; i++) {
+        cout << i + 1 << ". " << patientNames[i] << " with " << doctorNames[i]
+             << " on " << appointmentDates[i] << endl;
+    }
+}
+
+// Add Patient
+void addPatient() {
+    if (pCount >= 10) {
+        cout << "Patient limit reached.\n";
+        return;
+    }
+    cout << "\nEnter Patient Name: ";
+    cin >> ws;
+    getline(cin, pName[pCount]);
+    cout << "Enter Gender (M/F): ";
+    cin >> pGender[pCount];
+    cout << "Enter Age: ";
+    cin >> pAge[pCount];
+    cout << "Enter Address: ";
+    cin >> ws;
+    getline(cin, pAddress[pCount]);
+    cout << "Enter Room Number: ";
+    cin >> pRoom[pCount];
+    pCount++;
+    cout << "Patient added.\n";
+}
+
+// View Patients
+void viewPatients() {
+    cout << "\n--- Patient Records ---\n";
+    if (pCount == 0) {
+        cout << "No patients found.\n";
+        return;
+    }
+
+    for (int i = 0; i < pCount; i++) {
+        cout << i + 1 << ". " << pName[i] << " | " << pGender[i]
+             << " | Age: " << pAge[i] << " | Room: " << pRoom[i]
+             << " | Address: " << pAddress[i] << endl;
+    }
+}
+
+// View Doctors
+void viewDoctors() {
+    cout << "\n--- Doctor List ---\n";
+    for (int i = 0; i < 7; i++) {
+        cout << i + 1 << ". " << docName[i] << " - " << docExpertise[i] << endl;
+    }
+}
+
+// Main Program
+int main() {
+    int mainChoice;
+    do {
+        cout << "\n=== Hospital Management System ===\n";
+        cout << "1. Register\n";
+        cout << "2. Login\n";
+        cout << "3. Exit\n";
+        cout << "Enter choice: ";
+        cin >> mainChoice;
+
+        if (mainChoice == 1) {
+            registerUser();
+        } else if (mainChoice == 2) {
+            if (loginUser()) {
+                int subChoice;
+                do {
+                    cout << "\n--- Dashboard ---\n";
+                    cout << "1. Book Appointment\n";
+                    cout << "2. View Appointments\n";
+                    cout << "3. Add Patient\n";
+                    cout << "4. View Patients\n";
+                    cout << "5. View Doctors\n";
+                    cout << "6. Generate Bill\n";
+                    cout << "7. Logout\n";
+                    cout << "Enter choice: ";
+                    cin >> subChoice;
+
+                    if (subChoice == 1) bookAppointment();
+                    else if (subChoice == 2) showAppointments();
+                    else if (subChoice == 3) addPatient();
+                    else if (subChoice == 4) viewPatients();
+                    else if (subChoice == 5) viewDoctors();
+                    else if (subChoice == 6) {
+                        Billing b;
+                        b.inputBill();
+                        b.showBill();
+                    }
+                    else if (subChoice == 7) {
+                        cout << "Logged out.\n";
+                    }
+                    else {
+                        cout << "Invalid option.\n";
+                    }
+
+                } while (subChoice != 7);
+            }
+        } else if (mainChoice == 3) {
+            cout << "Exiting program.\n";
+        } else {
+            cout << "Invalid choice.\n";
+        }
+
+    } while (mainChoice != 3);
+
+    return 0;
+}
